@@ -1,4 +1,5 @@
 package command;
 
-public class LoginCommond extends BaseCommand{
+public class LoginCommond extends Command{
+	
 }
