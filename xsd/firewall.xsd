@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="urn:HP:FCS:WebServicesFW" xmlns:ns1="urn:HP:FCS:WebServicesFW">
+  <xs:element name="FWConfig">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="ns1:action"/>
+        <xs:element ref="ns1:workorderID"/>
+        <xs:element maxOccurs="unbounded" ref="ns1:Device"/>
+        <xs:element ref="ns1:status"/>
+        <xs:element ref="ns1:message"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="action" type="xs:NCName"/>
+  <xs:element name="workorderID" type="xs:NCName"/>
+  <xs:element name="Device">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="ns1:CMAIP"/>
+        <xs:element ref="ns1:VFWNAME"/>
+        <xs:element ref="ns1:ACLs"/>
+        <xs:element ref="ns1:NATs"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CMAIP" type="xs:NMTOKEN"/>
+  <xs:element name="VFWNAME" type="xs:NCName"/>
+  <xs:element name="ACLs">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="ns1:ACL"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ACL">
+    <xs:complexType>
+      <xs:attribute name="bounding" use="required" type="xs:NCName"/>
+      <xs:attribute name="ecs_network" use="required" type="xs:NCName"/>
+      <xs:attribute name="name" use="required" type="xs:NCName"/>
+      <xs:attribute name="non_ecs_network" use="required" type="xs:NCName"/>
+      <xs:attribute name="port" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="protocol" use="required" type="xs:NCName"/>
+      <xs:attribute name="sequence" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NATs">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="ns1:NAT"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NAT">
+    <xs:complexType>
+      <xs:attribute name="name" use="required" type="xs:NCName"/>
+      <xs:attribute name="private_ip" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="public_ip" use="required" type="xs:NMTOKEN"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="status" type="xs:NCName"/>
+  <xs:element name="message" type="xs:NCName"/>
+</xs:schema>
