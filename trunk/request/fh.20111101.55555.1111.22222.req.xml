@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FWConfig xmlns="urn:HP:FCS:WebServicesFW">
+	<action>fwconfig</action>
+	<workorderID>fh.20111101.55555.1111.22222</workorderID>
+	<context>
+		<name>CanonicalName</name>
+	</context>
+	<Device>
+		<CMAIP>192.168.0.1</CMAIP><!-- CMA IP address -->
+		<VFWNAME>FW1LabClient1</VFWNAME><!-- virtual firewall name-->
+		<ACLs>
+			<ACL name="access-internet-http-web1" sequence="1" protocol="TCP" port="80" bounding="inbound" ecs_network="RANGE172.16.1.1-172.16.2.254" non_ecs_network="any" />
+			<ACL name="access-internet-http-web1" sequence="2" protocol="UDP" port="80" bounding="inbound" ecs_network="RANGE172.16.1.1-172.16.2.254" non_ecs_network="any" />
+			<ACL name="access-internet-http-web2" sequence="3" protocol="ICMP" port="unused" bounding="inbound" ecs_network="RANGE172.16.1.1-172.16.2.254" non_ecs_network="any" />
+			<ACL name="access-internet-http-web3" sequence="4" protocol="ICMP" port="unused" bounding="outbound" ecs_network="any" non_ecs_network="any" />
+		<!-- name: The ACL rule name-->
+		<!-- sequence: firewall rule sequence,must begin with 1, and increase by 1 -->
+		<!-- protocol: must be TCP UDP or ICMP-->
+		<!-- port: can be a number from 1 to 65535, should be show as 80, 80-88 or 5000-5005-->
+		<!-- bounding: must be inbound or outbound -->
+		<!-- ecs_network: the IP scope, should be show as any or RANGE172.16.1.1-172.16.2.254 or NETWORK10.3.0.1-255.255.0.0 or HOST10.3.0.11-->
+		<!-- non_ecs_network: the IP scope, should be show as any or RANGE172.16.1.1-172.16.2.254 or NETWORK10.3.0.1-255.255.0.0 or HOST10.3.0.11-->
+		</ACLs>
+		<NATs>
+			<NAT name="client1-net1" private_ip="30.1.0.11" public_ip="172.16.1.11"  />
+			<NAT name="client1-net2" private_ip="30.2.0.11" public_ip="172.16.2.11"  />
+			<!-- name: the NAT rule name -->
+			<!-- private_ip: the server IP in ECS Lab-->
+			<!-- public_ip: public IP bind with this server -->
+		</NATs>
+	</Device>
+	<status>unused-status</status>
+    <message>unused-message</message>
+</FWConfig>
