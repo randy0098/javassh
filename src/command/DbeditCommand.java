@@ -1,5 +1,5 @@
 package command;
 
 
-public class DbeditCommand extends BaseCommand {
+public class DbeditCommand extends Command {
 }
